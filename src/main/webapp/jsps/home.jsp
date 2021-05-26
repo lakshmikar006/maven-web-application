@@ -27,7 +27,7 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 <hr>
 <div style="text-align: center;">
 	<span>
-		<img src="images/mithunlogo.jpg" alt="" width="100">
+		<img src="images/mithunlogo1.jpg" alt="" width="100">
 	</span>
 	<span style="font-weight: bold;">
 		front page test
@@ -41,7 +41,7 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 <hr>
 <hr>
 <p align=center> Development Center.</p>
-<p align=center><small>Copyrights 2019 by <a href="http://google.com/">Mithun Technologies</a> </small></p>
+<p align=center><small>Copyrights 2019 by <a href="http://google.com/">tech</a> </small></p>
 
 </body>
 </html>
