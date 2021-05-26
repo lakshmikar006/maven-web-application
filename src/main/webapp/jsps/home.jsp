@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ANsible- Home Page</title>
-<link href="images/mithunlogo21.jpg" rel="icon">
+<link href="images/mithunlogo121.jpg" rel="icon">
 </head>
 </head>
 <body>
