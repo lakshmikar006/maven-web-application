@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavenwebapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+	    app: mavenwebapp
+  template:
+    metadata:
+	    name: mavenwebpod
+	    labels:
+	      app: mavenwebapp #this must in selector in service
+	  spec:
+	    containers:
+	    - name: mavenwebapp
+	      image: vamc123/maven-web-app
+		    ports:
+		    - conatinerPort: 8080    
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mavenwebservice
+spec:
+  type: NodePort
+  selector:
+    app: mavenwebapp #labels in pods section
+  ports:
+  - port: 80
+    targetport: 8080
+    nodePort: 30032
