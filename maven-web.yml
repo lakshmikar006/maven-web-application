@@ -1,34 +1,35 @@
-apiVersion: apps/v1
-kind: Deployment
+---
+apiVersion: v1
+kind: ReplicationController
 metadata:
-  name: mavenwebapp
+  labels:
+    name: javawebapp
+  name: java-controller
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-	    app: mavenwebapp
+  replicas: 1
   template:
     metadata:
-	    name: mavenwebpod
-	    labels:
-	      app: mavenwebapp #this must in selector in service
-	  spec:
-	    containers:
-	    - name: mavenwebapp
-	      image: vamc123/maven-web-app
-		    ports:
-		    - conatinerPort: 8080    
-      
+      labels:
+        name: javawebapp
+    spec:
+      containers:
+      - image: vamc123/maven-web-app
+        name: javawebapp
+        ports:
+        - name: javawebapp
+          containerPort: 8080
 ---
+# Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
-  name: mavenwebservice
+  labels:
+    name: javawebapp
+  name: javawebapp
 spec:
   type: NodePort
-  selector:
-    app: mavenwebapp #labels in pods section
   ports:
-  - port: 80
-    targetport: 8080
-    nodePort: 30032
+    - port: 8080
+      targetPort: 8080
+  selector:
+    name: javawebapp
