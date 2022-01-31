@@ -1,35 +1,30 @@
----
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  labels:
-    name: javawebapp
-  name: java-controller
+  name: firstdeployment
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
+      name: firstdeployment 
       labels:
-        name: javawebapp
-    spec:
-      containers:
-      - image: vamc123/maven-web-app
-        name: javawebapp
-        ports:
-        - name: javawebapp
-          containerPort: 8080
+        color: blue #label this can be call in service
+  spec:
+    containers:
+    - name: firstdeployment
+      image: lakshmikar1993/nginx:myapp
+      ports:
+      - containerPort: 80
 ---
-# Node Port Service
 apiVersion: v1
-kind: Service
+kind: service
 metadata:
-  labels:
-    name: javawebapp
-  name: javawebapp
+  name: firstserivce
 spec:
   type: NodePort
-  ports:
-    - port: 8080
-      targetPort: 8080
   selector:
-    name: javawebapp
+    color: blue #which was metion in above deployment ymal
+  ports:
+  - port: 80 #servic port
+    targetPort: 80 # container port of nginx
+    nodePort: 30032 #nodeport range 30000 to 32767
